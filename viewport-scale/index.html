@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Viewport Scale</title>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        html, body, #container {
+            height: 100%;
+            overflow: scroll;
+        }
+        html {
+            /* font-size: 1px; */
+            background-color: #ECECEC;
+        }
+        input {
+            font-size: 24px;
+        }
+        #container {
+            /* min-width: 320px;
+            max-width: 750px; */
+            width: 750px;
+            
+            background-color: #FFF;
+            margin: auto;
+            text-align: center;
+            font-size: 24px;
+        }
+        header {
+            display: flex;
+            height: 300px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            list-style: none;
+            width: 250px;
+            height: 150px;
+            line-height: 150px;
+            color: #FFF;
+            background-color: rgba(0,0,0,.3);
+        }
+        .form {
+            margin: 20px 10px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            width: 100px;
+            text-align: right;
+        }
+        .form-group label::after {
+            content: ":";
+            margin-right: 4px;
+        }
+        .form-group input {
+            outline: none;
+            border-radius: 0;
+            border: 1px solid #CCC;
+            padding: 10px 5px;
+            vertical-align: middle;
+            flex: 1;
+        }
+        .btn {
+            width: 100%;
+            outline: none;
+            border: 0;
+            background-color: rgba(0,0,0,0.8);
+            color: #FFF;
+            padding: 12px 0;
+        }
+    </style>
+    <script>
+        function useScale() {
+            let designWidth = 750;
+            let minWidth = 320;
+            let clientWidth = window.outerWidth;
+            if (clientWidth > designWidth) {
+                clientWidth = designWidth;
+            };
+            let scale = (clientWidth > minWidth ? clientWidth : minWidth ) / designWidth;
+            document.querySelector('meta[name="viewport"]').setAttribute('content',`width=device-width, initial-scale=${scale}, minimum-scale=${scale}, maximum-scale=${scale}, user-scalable=no`)
+        }
+        useScale();
+        window.addEventListener('resize', function() {
+            console.log('resize')
+            console.log(document.documentElement.clientWidth)
+            useScale();
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <header>
+            100% X 200
+        </header>
+        <main>
+            <nav>
+                <ul>
+                    <li>150 X 150</li>
+                    <li>150 X 150</li>
+                    <li>150 X 150</li>
+                </ul>
+            </nav>
+            <article class="form">
+                <div div class="form-group">
+                    <input placeholder="输入用户名"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="输入密码"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn">Submit</button>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

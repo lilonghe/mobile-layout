@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>REM</title>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        html, body, #container {
+            height: 100%;
+            overflow: scroll;
+        }
+        html {
+            font-size: 1px;
+            background-color: #ECECEC;
+        }
+        input {
+            font-size: 24rem;
+        }
+        #container {
+            min-width: 320px;
+            max-width: 750px;
+            
+            background-color: #FFF;
+            margin: auto;
+            text-align: center;
+            font-size: 24rem;
+        }
+        header {
+            display: flex;
+            height: 300rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            list-style: none;
+            width: 250rem;
+            height: 150rem;
+            line-height: 150rem;
+            color: #FFF;
+            background-color: rgba(0,0,0,.3);
+        }
+        .form {
+            margin: 20rem 10rem;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20rem;
+        }
+        .form-group label {
+            width: 100rem;
+            text-align: right;
+        }
+        .form-group label::after {
+            content: ":";
+            margin-right: 4px;
+        }
+        .form-group input {
+            outline: none;
+            border-radius: 0;
+            border: 1px solid #CCC;
+            padding: 10rem 5rem;
+            vertical-align: middle;
+            flex: 1;
+        }
+        .btn {
+            width: 100%;
+            outline: none;
+            border: 0;
+            background-color: rgba(0,0,0,0.8);
+            color: #FFF;
+            padding: 12rem 0;
+        }
+    </style>
+    <script>
+        function useREM() {
+            let designWidth = 750;
+            let minWidth = 320;
+            let defaultFontSize = 1;
+            let clientWidth = document.documentElement.clientWidth;
+            if (clientWidth > designWidth) {
+                clientWidth = designWidth;
+            };
+            let scale = (clientWidth > minWidth ? clientWidth : minWidth ) / designWidth;
+            document.querySelector('html').style.fontSize = defaultFontSize * scale + "px";
+        }
+        useREM();
+        window.addEventListener('resize', function() {
+            useREM();
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <header>
+            100% X 200
+        </header>
+        <main>
+            <nav>
+                <ul>
+                    <li>150 X 150</li>
+                    <li>150 X 150</li>
+                    <li>150 X 150</li>
+                </ul>
+            </nav>
+            <article class="form">
+                <div div class="form-group">
+                    <input placeholder="输入用户名"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="输入密码"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn">Submit</button>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>
